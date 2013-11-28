@@ -1,0 +1,37 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+#header{ padding:5px; }
+#email_data{
+	border:1px solid #CCC;
+	width: 390px;
+	padding:5px 35px;
+  height: 90px;
+  font-size:14px;
+}
+#content{
+  margin-top: 20px;
+}
+
+.email_table  {
+	border: 1px solid #CCC;
+  border-collapse: collapse;
+}
+  .email_table th {
+    border: 1px solid #CCC;
+  }
+  .email_table tr td{
+    border: 1px solid #CCC;
+		font-size:14px;
+  }
