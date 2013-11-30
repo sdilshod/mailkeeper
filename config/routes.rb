@@ -1,8 +1,9 @@
 Mailkeeper::Application.routes.draw do
 
-	root :to => 'main#index'
+	root :to => 'wellcome#index'
 	
 	match 'emails/:e_type/get_latest' => 'main#get_latest', :as => :get_emails
+	match 'emails' => 'main#index', :as => :emails
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

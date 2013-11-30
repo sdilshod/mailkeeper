@@ -15,9 +15,9 @@
 #header{ padding:5px; }
 #email_data{
 	border:1px solid #CCC;
-	width: 390px;
+	width: 250px;
 	padding:5px 35px;
-  height: 90px;
+  height: 100px;
   font-size:14px;
 }
 #content{

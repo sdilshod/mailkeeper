@@ -1,21 +1,10 @@
 %div
   %div{:id => "header"}
-    %label{:style=>"position:absolute;font-size:12px;top:5px;left:25px;background-color:white"} Почтовые данный
-    %div{:id => "email_data"}
-      = form_tag do
-        %p
-          =label_tag "логин"
-          =text_field_tag :email,nil, :style => "width:250px;", :id=> :mail_login, 
-                          :onChange => "change_href_btn_get_latest(this,'')"
-        %p
-          =label_tag "пароль"
-          =password_field_tag :password,nil, :style => "width:150px;", :id => :pwd,
-                              :onChange => "change_href_btn_get_latest(this,'')"
-          =submit_tag "Сохранить"
+    
   %div{:id => "content"}
     %div{:style=>"margin-bottom: 10px;"}
-      =select_tag :email_type, options_for_select([["Входящий","inner"],["Исходящий","outer"]]), :onChange=>"change_href_btn_get_latest(this,'m_box')"
-      =link_to "Показать"
+      =select_tag :email_type, options_for_select([["===", "noun"],["Входящий","inner"],["Исходящий","outer"]]), :onChange=>"change_href_btn_get_latest(this,'m_box')"
+      =link_to "Показать", emails_url(:e_type => "inner"), :id => :btn_show
       =link_to "Загрузить последную", get_emails_url(:e_type => "inner"), :id => :btn_get_latest
     %div
       %table{:class => "email_table", :border => 1}

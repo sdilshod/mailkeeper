@@ -1,0 +1,18 @@
+%div{:style=>"position:absolute;width:100%;text-align:center;background-color:#CCC;top:150px;"}
+  =flash[:notice]
+%div{:style => "margin-left:300px;margin-top:200px;"}
+  %div{:id => "header"}
+    %label{:style=>"position:absolute;font-size:12px;top:198px;left:320px;background-color:white"} Почтовые данный
+    %div{:id => "email_data"}
+      = form_for :user do |f|
+        %p
+          =f.label :login, "логин"
+          =f.text_field :login, :style => "width:200px;"
+        %p
+          =f.label :password, "пароль"
+          =f.password_field :password, :style => "width:200px;"
+        %p
+          =check_box_tag :registration, "1", false, :style => "padding-right:0px;margin-right:0px;"
+          =label_tag :registration, "Регистрировать", :style => "margin-left:0px;padding-left:0px;"
+          =submit_tag "Вход"
+

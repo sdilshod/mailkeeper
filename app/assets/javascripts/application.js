@@ -20,7 +20,8 @@ function change_href_btn_get_latest(obj,t_mile){
 	if(t_mile=="m_box")
 	{
 		str=href_attr.slice(href_attr.search(/get_latest/));
-		$("#btn_get_latest").attr("href","/emails/"+encodeURIComponent($(obj).val())+str);
+		$("#btn_get_latest").attr("href","/emails/"+encodeURIComponent($(obj).val())+"/"+str);
+		$("#btn_show").attr("href","?e_type="+encodeURIComponent($(obj).val()) );		
 	}else
 	{
 	  lgn=encodeURIComponent($("#mail_login").val());

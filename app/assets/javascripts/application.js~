@@ -20,11 +20,12 @@ function change_href_btn_get_latest(obj,t_mile){
 	if(t_mile=="m_box")
 	{
 		str=href_attr.slice(href_attr.search(/get_latest/));
-		$("#btn_get_latest").attr("href","/emails/"+encodeURIComponent($(obj).val())+str);
+		$("#btn_get_latest").attr("href","/emails/"+encodeURIComponent($(obj).val())+"/"+str);
+		$("#btn_show").attr("href","?box_type="+encodeURIComponent($(obj).val()) );		
 	}else
 	{
 	  lgn=encodeURIComponent($("#mail_login").val());
 	  pwd=encodeURIComponent($("#pwd").val());
-	  $("#btn_get_latest").attr("href",href_attr+"?mail_login="+lgn+";pwd="+btoa(pwd));
+	  $("#btn_get_latest").attr("href",href_attr+"?lgn="+lgn+";pwd="+btoa(pwd));
 	}
 }
