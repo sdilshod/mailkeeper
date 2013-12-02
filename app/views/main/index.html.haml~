@@ -1,9 +1,11 @@
 %div
   %div{:id => "header"}
-    
+    %div{:style => "float:right"}
+      =current_user.login
+      =link_to "Выход", destroy_session_url
   %div{:id => "content"}
     %div{:style=>"margin-bottom: 10px;"}
-      =select_tag :email_type, options_for_select([["Входящий","inner"],["Исходящий","outer"]]), :onChange=>"change_href_btn_get_latest(this,'m_box')"
+      =select_tag :email_type, options_for_select([["===", "noun"],["Входящий","inner"],["Исходящий","outer"]]), :onChange=>"change_href_btn_get_latest(this,'m_box')"
       =link_to "Показать", emails_url(:e_type => "inner"), :id => :btn_show
       =link_to "Загрузить последную", get_emails_url(:e_type => "inner"), :id => :btn_get_latest
     %div
@@ -11,10 +13,12 @@
         %th Дата
         %th{:style => "width: 200px;"} От кого
         %th{:style => "width: 400px;"} Тема
+        %th
         - unless @emails.blank?
           - @emails.each do |e|
             %tr
               %td=e.date_.to_s :db
               %td=e.sender_rec
               %td=e.subject
+              %td=link_to "Показать"
   %div{:id => "footer"}

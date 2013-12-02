@@ -4,6 +4,9 @@ Mailkeeper::Application.routes.draw do
 	
 	match 'emails/:e_type/get_latest' => 'main#get_latest', :as => :get_emails
 	match 'emails' => 'main#index', :as => :emails
+	match 'emails/:id/show' => 'main#show', :as => :email_show
+	
+	match 'session' => 'wellcome#destroy_session', :as => :destroy_session
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

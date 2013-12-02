@@ -66,11 +66,13 @@ class Email < ActiveRecord::Base
 				return em.subject if $1.blank?
   	else
   	  body_of_mail = em.text_part.body 
-  		if body_of_mail.encoding == "base64"
+  		if body_of_mail.encoding == "base64" 
+  		  ch_set = em.text_part.charset
 			  encoded_str = body_of_mail.encoded.gsub(/\r\n/,"")
-				return Base64.decode64(encoded_str).force_encoding("koi8-r").encode("utf-8").gsub(/\r\n/,"")
+				return Base64.decode64(encoded_str).force_encoding(ch_set).encode("utf-8").gsub(/\r\n/,"")
   		else
-  		  return body_of_mail
+  		  return body_of_mail.encoded.to_s
+#  		  return em.parts[1].body
   		end
   	end
   end

@@ -1,4 +1,6 @@
 class MainController < ApplicationController
+	before_filter :check_authorize
+
 
 	def index
 	  b_type = params[:e_type] || "inner"
@@ -6,12 +8,12 @@ class MainController < ApplicationController
 	end
 	
 	def get_latest
-	  Email.get_latest params[:lgn], Base64.decode64(params[:pwd])
+	  Email.get_latest current_user.login, current_user.password, params[:e_type]
 	  redirect_to :action => 'index'
 	end
 	
-	def show_mails
-	
+	def show
+		@email = Email.find params[:id]
 	end
 
 end

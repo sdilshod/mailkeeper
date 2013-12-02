@@ -10,8 +10,8 @@ describe WellcomeController do
 		User.count.should > 0
 		
 		post :index, {:user => {:login => "sdilshod.ex@gmail.com", :password => "12345rewq"}}
-		response.should redirect_to emails_url		
-		
+		response.should redirect_to(emails_url)
+		session[:current_user_id].should_not be_blank		
 	end
 	
 end

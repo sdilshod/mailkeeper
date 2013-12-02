@@ -3,7 +3,8 @@ Mailkeeper::Application.routes.draw do
 	root :to => 'wellcome#index'
 	
 	match 'emails/:e_type/get_latest' => 'main#get_latest', :as => :get_emails
-	match 'emails/show' => 'main#show', :as => :show_mails
+	match 'emails' => 'main#index', :as => :emails
+	match 'session' => 'wellcome#destroy_session', :as => :destroy_session
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

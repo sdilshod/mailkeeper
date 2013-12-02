@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class WellcomeController < ApplicationController
+	
 
 	def index
 		if request.post?
@@ -10,20 +11,28 @@ class WellcomeController < ApplicationController
 		  	  session[:current_user_id] = @user[:id]
 		  	  redirect_to emails_url
 		  	else
-		  	  flash[:notice] = 
-#		  	  render :text => "not saved user"
-		  	  #must be error message
+		  	  flash[:notice] = "Ошибка в регистрации"
 		  	end
 		  else
 		  	@user = User.find_by_login params[:user][:login]
 		  	if @user
-		  	  session[:current_user_id] = @user[:id]
-		  	  redirect_to emails_url
+		  	  if params[:password] == @user.password
+					  session[:current_user_id] = @user[:id]
+					  redirect_to emails_url
+		  	  else
+			  	  flash[:notice] = "Не верный пароль пользователя"
+		  	  end
 		  	else
 		  	  flash[:notice] = "Пользователь не найдено в БД"
 		  	end
 		  end
 		end
 	end
+	
+	def destroy_session
+		session[:current_user_id]=nil
+		redirect_to root_url
+	end
+
 
 end
