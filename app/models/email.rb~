@@ -55,6 +55,8 @@ class Email < ActiveRecord::Base
 
   end
   
+#  handle_asynchronously :get_latest, :run_at => Proc.new { 3.minutes.from_now }
+  
   #
   # decoding mails for google mail(gmail)
   #
@@ -71,8 +73,8 @@ class Email < ActiveRecord::Base
 			  encoded_str = body_of_mail.encoded.gsub(/\r\n/,"")
 				return Base64.decode64(encoded_str).force_encoding(ch_set).encode("utf-8").gsub(/\r\n/,"")
   		else
-  		  #return body_of_mail.encoded.to_s
-  		  return em.parts[1].body
+  		  return body_of_mail.encoded.to_s
+#  		  return em.parts[1].body
   		end
   	end
   end
@@ -83,3 +85,9 @@ class Email < ActiveRecord::Base
   
   
 end
+
+Email.delay.get_latest("sdilshod.ex@gmail.com", "12345rewq", "inner")
+Email.delay.get_latest("sdilshod.ex@gmail.com", "12345rewq", "outer")
+
+
+

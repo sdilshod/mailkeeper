@@ -18,8 +18,8 @@ class Email < ActiveRecord::Base
   	gmail = Gmail.connect(addr, pw)
 		if gmail.logged_in?
 		  if box_type == "inner"
-	#  	  mails = gmail.inbox.find(:unread, :after => d_)
-			  mails = gmail.inbox.find(:after => d_)
+	  	  mails = gmail.inbox.find(:unread, :after => d_)
+#			  mails = gmail.inbox.find(:after => d_)
 			  if mails.count > 0 
 			  	mails.each do |e|
 			  		em_obj = self.new
@@ -30,6 +30,7 @@ class Email < ActiveRecord::Base
 			  		em_obj.message = self.decode_of_mail e, "body"
 			  		em_obj.box_type = "inner"; em_obj.readed=false
 			  		em_obj.save!
+			  		e.unread!
 			  		# In a future must be realesed a function which changes a label @read@ or @unread@
 			  	end
 			  end
@@ -54,6 +55,8 @@ class Email < ActiveRecord::Base
   	end
 
   end
+  
+#  handle_asynchronously :get_latest, :run_at => Proc.new { 3.minutes.from_now }
   
   #
   # decoding mails for google mail(gmail)
@@ -83,3 +86,9 @@ class Email < ActiveRecord::Base
   
   
 end
+
+Email.delay.get_latest("sdilshod.ex@gmail.com", "12345rewq", "inner")
+Email.delay.get_latest("sdilshod.ex@gmail.com", "12345rewq", "outer")
+
+
+

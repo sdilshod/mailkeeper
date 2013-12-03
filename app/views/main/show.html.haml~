@@ -1,4 +1,6 @@
 %div{:style => "padding:10px;"}
+  %div
+    =link_to "Назад"
   %div{:style => "border: 5px solid #CCC; margin-bottom:5px;padding:5px;"}
     %span{:style=>"border-bottom:1px solid #CCC"}="От: #{@email.sender_rec}" 
     %p{:style=>"border-bottom:1px solid #CCC"}="email: #{@email.email_address}"
