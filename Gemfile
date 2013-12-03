@@ -14,6 +14,7 @@ gem 'delayed_job_active_record'
 
 group :production do
   gem 'pg'
+  gem 'activerecord-pg-adapter'
 end
 
 # Gems used only for assets and not required
