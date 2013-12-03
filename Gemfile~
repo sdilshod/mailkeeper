@@ -10,6 +10,7 @@ gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'haml'
 gem 'gmail'
+gem 'delayed_job_active_record'
 
 # Gems used only for assets and not required
 # in production environments by default.

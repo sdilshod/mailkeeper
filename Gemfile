@@ -12,6 +12,10 @@ gem 'haml'
 gem 'gmail'
 gem 'delayed_job_active_record'
 
+group :production do
+  gem 'pg'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
