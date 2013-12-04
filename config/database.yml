@@ -32,7 +32,7 @@ test:
   socket: /var/run/mysqld/mysqld.sock
 
 production:
-  adapter: pg
+  adapter: postgresql
   encoding: utf8
   reconnect: false
   database: mailkeeper_production
