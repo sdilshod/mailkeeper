@@ -36,7 +36,9 @@ production:
   encoding: utf8
   reconnect: false
   database: mailkeeper_production
-  pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+#  database: postgres
+#  pool: 5
+  username: postgres
+  password: 11111
+#  socket: /var/run/mysqld/mysqld.sock
+  socket: /var/run/postgresql/.s.PGSQL.5432
