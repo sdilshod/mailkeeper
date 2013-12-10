@@ -10,6 +10,12 @@
 
 class Email < ActiveRecord::Base
   # attr_accessible :title, :body
+  attr_accessible :email_address, :subject, :message
+  
+  has_many :email_attachments
+#  accepts_nested_attributes_for :email_attachments
+
+	before_save :fill_up_feilds
   
   def self.get_latest addr, pw, box_type="inner"
     last_mail = self.where(:box_type=>box_type).order("date_ desc").first
@@ -29,9 +35,11 @@ class Email < ActiveRecord::Base
 			  		em_obj.subject = self.decode_of_mail e
 			  		em_obj.message = self.decode_of_mail e, "body"
 			  		em_obj.box_type = "inner"; em_obj.readed=false
-			  		em_obj.save!
+			  		em_obj.save!#---
+			  		em_obj.save_inbox_attachments e #--In this must refactoring
+			  		em_obj.save!#---
 			  		e.unread!
-			  		# In a future must be realesed a function which changes a label @read@ or @unread@
+			  		
 			  	end
 			  end
   	  else
@@ -44,9 +52,7 @@ class Email < ActiveRecord::Base
 			  		em_obj.email_address = e.to[0].mailbox << "@" << e.to[0].host
 			  		em_obj.subject = self.decode_of_mail e
 			  		em_obj.message = self.decode_of_mail e, "body"
-			  		em_obj.box_type = "outer"
 			  		em_obj.save!
-			  		# In a future must be realesed a function which changes a label @read@ or @unread@
 			  	end
 			  end
 	  	  
@@ -56,7 +62,6 @@ class Email < ActiveRecord::Base
 
   end
   
-#  handle_asynchronously :get_latest, :run_at => Proc.new { 3.minutes.from_now }
   
   #
   # decoding mails for google mail(gmail)
@@ -80,15 +85,53 @@ class Email < ActiveRecord::Base
   	end
   end
   
+  def save_inbox_attachments email
+    folder = "public/system/transed"
+    unless email.attachments.empty?
+			email.message.attachments.each do |file|
+				File.open(File.join(folder, file.filename), "w+b", 0644 ) { |f| f.write file.body.decoded }
+				File.open("#{folder}/#{file.filename}") do |f|
+  				self.email_attachments << EmailAttachment.new(:email_id=>self.id,:attached_file=>f)
+				end
+			end      
+    end
+  end
+  
+  def send_mail addr, pw
+    all_is_OK=true
+	  Email.transaction do
+	  	gmail = Gmail.connect addr, pw
+ 	    unless gmail.logged_in?
+ 	    	all_is_OK=false
+ 	      raise ActiveRecord::Rollback
+ 	    end
+ 	    e_a=self.email_address
+ 	    e_m=self.message
+ 	    e_sub = self.subject
+ 	    att = self.email_attachments[0].attached_file.path
+			g_m = gmail.compose do
+			  to e_a
+			  subject e_sub
+			    body e_m
+			  unless att.blank?
+					add_file att
+			  end
+			end
+			g_m.deliver!
+	  end
+    all_is_OK
+  end
+  
 #  def self.connect_to
 #  	return Gmail.connect(addr, pw)
 #  end
+
+	private
+	
+	def fill_up_feilds
+	  self.date_ = Time.now if self.date_.blank?
+	  self.box_type = "outer" if self.box_type.blank?
+	end
   
   
 end
-
-Email.delay.get_latest("sdilshod.ex@gmail.com", "12345rewq", "inner")
-Email.delay.get_latest("sdilshod.ex@gmail.com", "12345rewq", "outer")
-
-
-

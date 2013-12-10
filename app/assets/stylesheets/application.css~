@@ -17,7 +17,7 @@
 	border:1px solid #CCC;
 	width: 250px;
 	padding:5px 35px;
-  height: 100px;
+  height: 125px;
   font-size:14px;
 }
 #content{
@@ -30,6 +30,7 @@
 }
   .email_table th {
     border: 1px solid #CCC;
+		font-size:14px;    
   }
   .email_table tr td{
     border: 1px solid #CCC;

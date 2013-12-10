@@ -10,11 +10,11 @@ gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'haml'
 gem 'gmail'
-gem 'delayed_job_active_record'
+gem "paperclip", "~> 3.0"
+#gem 'delayed_job_active_record'
 
 group :production do
   gem 'pg'
-#  gem 'activerecord-pg-adapter'
 end
 
 # Gems used only for assets and not required

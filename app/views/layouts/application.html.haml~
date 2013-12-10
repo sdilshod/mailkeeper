@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Mailkeeper
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application" 
+    = csrf_meta_tags 
+  %body{:style=>"padding:0px;margin:0px;hight:100%"}
+    %div{:id => "header", :style => "border-bottom:1px solid #CCC;padding-bottom:25px;padding-right:10px;"}
+      %span{:style => "float:right;font-style:bold;;"}
+        - if autorized?
+          =current_user.login
+          =link_to "Выход", destroy_session_url
+
+    %div
+      =yield
+
+

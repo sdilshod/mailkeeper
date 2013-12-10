@@ -1,4 +1,4 @@
-%div{:style=>"position:absolute;width:100%;text-align:center;background-color:#CCC;top:140px;"}
+%div{:style=>"position:absolute;width:100%;text-align:center;background-color:#CCC;top:150px;"}
   =flash[:notice]
 %div{:style => "margin-left:300px;margin-top:200px;"}
   %div{:id => "header"}

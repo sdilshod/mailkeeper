@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-#header{ padding:5px; }
+/*#header{ padding:5px; }*/
 #email_data{
 	border:1px solid #CCC;
 	width: 250px;
@@ -30,6 +30,7 @@
 }
   .email_table th {
     border: 1px solid #CCC;
+		font-size:14px;    
   }
   .email_table tr td{
     border: 1px solid #CCC;

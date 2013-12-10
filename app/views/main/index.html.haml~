@@ -1,24 +1,20 @@
-%div
-  %div{:id => "header"}
-    %div{:style => "float:right"}
-      =current_user.login
-      =link_to "Выход", destroy_session_url
-  %div{:id => "content"}
+%div{:style => "padding:0;"}
+  %div{:id => "content", :style => "padding-left:10px;width:70%"}
     %div{:style=>"margin-bottom: 10px;"}
       =select_tag :email_type, options_for_select([["===", "noun"],["Входящий","inner"],["Исходящий","outer"]]), :onChange=>"change_href_btn_get_latest(this,'m_box')"
       =link_to "Показать", emails_url(:e_type => "inner"), :id => :btn_show
+      =link_to "Новый", email_new_url
       =link_to "Загрузить последную", get_emails_url(:e_type => "inner"), :id => :btn_get_latest
     %div
       %table{:class => "email_table", :border => 1}
-        %th Дата
-        %th{:style => "width: 200px;"} От кого
-        %th{:style => "width: 400px;"} Тема
-        %th
+        %th{:style => "width: 135px;"} Дата
+        %th{:style => "width: 150px;"}=params[:e_type] == "outer" ? "Кому" : "От кого"
+        %th{:style => "width: 350px;", :colspan=>2} Тема
         - unless @emails.blank?
           - @emails.each do |e|
             %tr
               %td=e.date_.to_s :db
               %td=e.sender_rec
               %td=e.subject
-              %td=link_to "Показать"
+              %td{:style => "width:50px;"}=link_to "Показать", email_show_url(e.id)
   %div{:id => "footer"}

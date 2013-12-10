@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_user, :autorized?
  
+ # Надо подумать сессияими session[:current_user_id]
   
  protected
  
