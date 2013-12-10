@@ -2,7 +2,7 @@
   =flash[:notice]
 %div{:style => "margin-left:300px;margin-top:200px;"}
   %div{:id => "header"}
-    %label{:style=>"position:absolute;font-size:12px;top:198px;left:320px;background-color:white"} Почтовые данный
+    %label{:style=>"position:absolute;font-size:12px;top:218px;left:320px;background-color:white"} Почтовые данный
     %div{:id => "email_data"}
       = form_for :user do |f|
         %p

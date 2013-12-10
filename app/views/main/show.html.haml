@@ -11,6 +11,7 @@
       %p
         =@email.message.gsub(/\r\n/, "</br>").html_safe
       %p
-        - @email.email_attachments.each do |e| 
-          = link_to e.attached_file.url(:original, false).split(/\//)[-1], download_url(e)
+        - if !@email.email_attachments.blank?
+          - @email.email_attachments.each do |e|
+            = link_to e.attached_file.url(:original, false).split(/\//)[-1], download_url(e)
 
