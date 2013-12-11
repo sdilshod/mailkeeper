@@ -5,7 +5,7 @@ class MainController < ApplicationController
 
 	def index
 	  b_type = params[:e_type] || "inner"
-		@emails = Email.where(:box_type => b_type ).order('date_ desc')
+		@emails = current_user.emails.where(:box_type => b_type ).paginate(:page => params[:page]).order('date_ desc')
 	end
 	
 	def new
@@ -14,6 +14,7 @@ class MainController < ApplicationController
 	
 	def create
 		@email = Email.new params[:email]
+		@email.user_id=current_user.id
 	  @email.email_attachments.build params[:email_attachments]
 		if @email.save
 		  unless @email.send_mail current_user.login, current_user.password
@@ -27,7 +28,7 @@ class MainController < ApplicationController
 	end
 	
 	def get_latest
-	  Email.get_latest current_user.login, current_user.password, params[:e_type]
+	  Email.get_latest current_user, params[:e_type]
 	  redirect_to :action => 'index'
 	end
 	

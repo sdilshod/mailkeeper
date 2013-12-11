@@ -2,9 +2,9 @@
   %div{:id => "content", :style => "padding-left:10px;width:70%"}
     %div{:style=>"margin-bottom: 10px;"}
       =select_tag :email_type, options_for_select([["===", "noun"],["Входящий","inner"],["Исходящий","outer"]]), :onChange=>"change_href_btn_get_latest(this,'m_box')"
-      =link_to "Показать", emails_url(:e_type => "inner"), :id => :btn_show
-      =link_to "Новый", email_new_url
-      =link_to "Загрузить последную", get_emails_url(:e_type => "inner"), :id => :btn_get_latest
+      =link_to "Показать", emails_url(:e_type => "inner"), :id => :btn_show, :class=>"button_link"
+      =link_to "Новый", email_new_url, :class=>"button_link"
+      =link_to "Загрузить последную", get_emails_url(:e_type => "inner"), :id => :btn_get_latest, :class=>"button_link"
     %div
       %table{:class => "email_table", :border => 1}
         %th{:style => "width: 135px;"} Дата
@@ -16,5 +16,7 @@
               %td=e.date_.to_s :db
               %td="#{e.sender_rec} #{e.email_address}"
               %td=e.subject
-              %td{:style => "width:50px;"}=link_to "Показать", email_show_url(e.id)
+              %td{:style => "width:50px;"}=link_to "Показать", email_show_url(e.id), :class=>"button_link"
+      %p
+        = will_paginate @emails, :class => "flickr_pagination"
   %div{:id => "footer"}

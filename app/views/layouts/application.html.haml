@@ -7,10 +7,10 @@
     = csrf_meta_tags 
   %body{:style=>"padding:0px;margin:0px;hight:100%"}
     %div{:id => "header", :style => "border-bottom:1px solid #CCC;padding-bottom:25px;padding-right:10px;"}
-      %span{:style => "float:right;font-weight:bold;;"}
+      %span{:style => "float:right;font-weight:bold;color:red;"}
         - if autorized?
           =current_user.login
-          =link_to "Выход", destroy_session_url
+          =link_to "Выход", destroy_session_url, :class=>"button_link"
 
     %div
       =yield

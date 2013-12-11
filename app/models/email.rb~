@@ -13,11 +13,16 @@ class Email < ActiveRecord::Base
   attr_accessible :email_address, :subject, :message
   
   has_many :email_attachments
+  belons_to :user
 #  accepts_nested_attributes_for :email_attachments
 
 	before_save :fill_up_feilds
+	
+	self.per_page = 10
   
-  def self.get_latest addr, pw, box_type="inner"
+  def self.get_latest current_user, box_type="inner"
+    addr=current_user.login
+    pw = current_user.password
     last_mail = self.where(:box_type=>box_type).order("date_ desc").first
     d_ = last_mail.blank? ? Date.new(2013,11,1) : last_mail.date_
      
@@ -35,9 +40,10 @@ class Email < ActiveRecord::Base
 			  		em_obj.subject = self.decode_of_mail e
 			  		em_obj.message = self.decode_of_mail e, "body"
 			  		em_obj.box_type = "inner"; em_obj.readed=false
-			  		em_obj.save!
-			  		em_obj.save_inbox_attachments e
-			  		em_obj.save!			  		
+			  		em_obj.user_id=current_user.id
+			  		em_obj.save!#---
+			  		em_obj.save_inbox_attachments e #--In this must refactoring
+			  		em_obj.save!#---
 			  		e.unread!
 			  		
 			  	end
@@ -52,6 +58,7 @@ class Email < ActiveRecord::Base
 			  		em_obj.email_address = e.to[0].mailbox << "@" << e.to[0].host
 			  		em_obj.subject = self.decode_of_mail e
 			  		em_obj.message = self.decode_of_mail e, "body"
+			  		em_obj.user_id=current_user.id
 			  		em_obj.save!
 			  	end
 			  end
@@ -91,7 +98,7 @@ class Email < ActiveRecord::Base
 			email.message.attachments.each do |file|
 				File.open(File.join(folder, file.filename), "w+b", 0644 ) { |f| f.write file.body.decoded }
 				File.open("#{folder}/#{file.filename}") do |f|
-  				self.email_attachments << EmailAttachment.new(:email_id=>self.id,:attached_file=>f)
+  				self.email_attachments << EmailAttachment.new(:attached_file=>f)
 				end
 			end      
     end

@@ -4,7 +4,9 @@
 
 
 class User < ActiveRecord::Base
-	has_accessible :login, :password
+	attr_accessible :login, :password
+
+	has_many :emails
 
   validates :login, :presence => true, :uniqueness => true
 end
