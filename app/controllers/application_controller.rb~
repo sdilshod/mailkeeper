@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
     if !autorized?
       redirect_to root_url
       return false
+    else
+      redirect_to emails_url
     end
     true
   end 

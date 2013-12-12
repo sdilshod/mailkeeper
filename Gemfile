@@ -33,6 +33,7 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem "factory_girl_rails", "~> 4.0"
 	gem 'rspec-rails'
 end
 # To use ActiveModel has_secure_password

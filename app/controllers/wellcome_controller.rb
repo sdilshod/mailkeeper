@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class WellcomeController < ApplicationController
-	
+	before_filter :redirect_to_emails_if_autorized
 
 	def index
 		if request.post?
@@ -32,6 +32,16 @@ class WellcomeController < ApplicationController
 	def destroy_session
 		session[:current_user_id]=nil
 		redirect_to root_url
+	end
+	
+	private
+	
+	def redirect_to_emails_if_autorized
+		if autorized? && action_name != "destroy_session"
+			redirect_to emails_url
+			return false
+		end
+		true
 	end
 
 
