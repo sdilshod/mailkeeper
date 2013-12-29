@@ -5,6 +5,7 @@
       =link_to "Показать", emails_url(:e_type => "inner"), :id => :btn_show, :class=>"button_link"
       =link_to "Новый", email_new_url, :class=>"button_link"
       =link_to "Загрузить последную", get_emails_url(:e_type => "inner"), :id => :btn_get_latest, :class=>"button_link"
+      =link_to "Удалить входящие письма", destroy_email_url(:id => "all"), :class=>"button_link"
     %div
       %table{:class => "email_table", :border => 1}
         %th{:style => "width: 135px;"} Дата
@@ -12,7 +13,7 @@
         %th{:style => "width: 350px;", :colspan=>2} Тема
         - unless @emails.blank?
           - @emails.each do |e|
-            %tr
+            %tr{:style => "#{e.readed ? '' : 'font-weight:bold;'}"}
               %td=e.date_.to_s :db
               %td="#{e.sender_rec} #{e.email_address}"
               %td=e.subject

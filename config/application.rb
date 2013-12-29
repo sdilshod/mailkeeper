@@ -64,3 +64,12 @@ module Mailkeeper
     config.assets.version = '1.0'
   end
 end
+
+#class String
+# def to_decoded_str
+#   self.scan(/(=\?[a-zA-Z0-9\-]+)(\?[B|Q]\?)([a-zA-Z-0-9\/=]+)/)  	
+#	 # what if decode is Q, i don't know
+#	 return Base64.decode64($3).force_encoding($1.gsub(/=\?/,"")).encode("utf-8") unless $1.blank?
+#	 return self if $1.blank?
+# end
+#end

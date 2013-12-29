@@ -2,7 +2,7 @@
   %div
     =link_to "Назад", emails_url, :class=>"button_link"
   %div{:style => "border: 5px solid #CCC; margin-bottom:5px;padding:5px;"}
-    %p{:style=>"border-bottom:1px solid #CCC; margin:5px;"}="От: #{@email.sender_rec}" 
+    %p{:style=>"border-bottom:1px solid #CCC; margin:5px;"}="От: #{@email.sender_rec}"
     %p{:style=>"border-bottom:1px solid #CCC;margin:5px;"}="email: #{@email.email_address}"
     %p{:style => "margin:5px;"}= "Тема: #{@email.subject}"
   %div{:style => "border: 5px solid #CCC;padding:5px;"}
@@ -14,4 +14,3 @@
         - if !@email.email_attachments.blank?
           - @email.email_attachments.each do |e|
             = link_to e.attached_file.url(:original, false).split(/\//)[-1], download_url(e)
-

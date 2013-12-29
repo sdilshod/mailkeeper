@@ -34,6 +34,7 @@
   }
   .email_table tr td{
     border: 1px solid #CCC;
+    padding:5px;
 		font-size:14px;
   }
   
@@ -41,6 +42,7 @@
    color: #105cb6;
    text-decoration: none;
    padding: 5px;
+   font-weight:normal;
   }.button_link:hover { background-color: #CCC; }
   
   

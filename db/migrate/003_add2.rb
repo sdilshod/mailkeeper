@@ -5,6 +5,6 @@ class Add2 < ActiveRecord::Migration
   end
 
   def down
-	  rename_column :emails, :box_type, :readed
+    rename_column :emails, :box_type, :readed
   end
 end

@@ -3,8 +3,8 @@
   %head
     %title Mailkeeper
     = stylesheet_link_tag "application", :media => "all"
-    = javascript_include_tag "application" 
-    = csrf_meta_tags 
+    = javascript_include_tag "application"
+    = csrf_meta_tags
   %body{:style=>"padding:0px;margin:0px;hight:100%"}
     %div{:id => "header", :style => "border-bottom:1px solid #CCC;padding-bottom:25px;padding-right:10px;"}
       %span{:style => "float:right;font-weight:bold;color:red;"}
@@ -14,5 +14,3 @@
 
     %div
       =yield
-
-

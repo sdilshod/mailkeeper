@@ -1,9 +1,0 @@
-class CreateEmailAttaches < ActiveRecord::Migration
-  def change
-    create_table :email_attaches do |t|
-			t.column :email_id, :integer
-			t.column :attached_file, :attachment
-      t.timestamps
-    end
-  end
-end

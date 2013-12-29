@@ -1,7 +1,7 @@
 %div{:style => "padding:10px;"}
   =flash[:error]
   %div
-  = form_for :email, :url => email_create_url, :html => { :multipart => true } do |f|  
+  = form_for :email, :url => email_create_url, :html => { :multipart => true } do |f|
     = link_to "Назад", emails_url, :class=>"button_link"
     = submit_tag "Отправить письмо", :class=>"button_link"
     %div{:style => "border: 5px solid #CCC; margin-bottom:5px;padding:5px;"}
@@ -19,4 +19,3 @@
         %p
           = fields_for :email_attachments do |f|
             = f.file_field :attached_file, :class=>"button_link"
-
