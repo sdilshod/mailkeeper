@@ -1,0 +1,6 @@
+{
+  "name": "mailkeeper",
+  "dependencies": {
+    "normalize-css": "2.1.3"
+  }
+}

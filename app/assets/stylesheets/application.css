@@ -10,9 +10,12 @@
  *
  *= require_self
  *= require_tree .
+ *= require normalize-css/normalize
  */
 
 /*#header{ padding:5px; }*/
+
+
 #email_data{
 	border:1px solid #CCC;
 	width: 250px;
@@ -30,22 +33,22 @@
 }
   .email_table th {
     border: 1px solid #CCC;
-		font-size:14px;    
+		font-size:14px;
   }
   .email_table tr td{
     border: 1px solid #CCC;
     padding:5px;
 		font-size:14px;
   }
-  
+
   .button_link {
    color: #105cb6;
    text-decoration: none;
    padding: 5px;
    font-weight:normal;
   }.button_link:hover { background-color: #CCC; }
-  
-  
+
+
   /*Will pagination stylesa*/
   .digg_pagination {
   background: white;
@@ -150,5 +153,4 @@
   .flickr_pagination .previous_page {
     margin-right: 1em; }
   .flickr_pagination .next_page {
-    margin-left: 1em; }
-  
+    margin-left: 1em; } 
