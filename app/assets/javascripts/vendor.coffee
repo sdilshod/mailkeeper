@@ -1,0 +1,9 @@
+#= require hamlcoffee
+#= require commonjs/commonjs
+#= require jquery/jquery
+#= require jquery.cookie/jquery.cookie
+#= require underscore/underscore
+#= require underscore.string/lib/underscore.string
+#= require backbone/backbone
+#= require backbone.marionette/lib/backbone.marionette
+#= require select2/select2

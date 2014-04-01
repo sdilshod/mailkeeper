@@ -1,0 +1,4 @@
+%td
+  %a= @sender_rec
+%td= @subject
+%td= @date_

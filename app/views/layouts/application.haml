@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Mailkeeper
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tags
+
+  %body
+    :javascript
+      (function() {
+
+        var Mailkeeper = require("mailkeeper");
+
+        this.App = new Mailkeeper({currentUser: #{current_user.to_json} });
+        $(this.App.start);
+
+      }).call(this);

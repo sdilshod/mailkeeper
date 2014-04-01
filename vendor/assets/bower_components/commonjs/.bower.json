@@ -1,0 +1,12 @@
+{
+  "name": "commonjs",
+  "homepage": "https://github.com/rutkovsky/commonjs",
+  "_release": "c41882609c",
+  "_resolution": {
+    "type": "commit",
+    "commit": "c41882609c12baa817783095d1681bf34ac7f630"
+  },
+  "_source": "git@github.com:rutkovsky/commonjs.git",
+  "_target": "c41882609c12baa817783095d1681bf34ac7f630",
+  "_originalSource": "git@github.com:rutkovsky/commonjs.git"
+}

@@ -1,0 +1,7 @@
+%ul.b-sidebar-menu
+  %li
+    %a{href: '/emails/box/inbox'}
+      %span= "Inbox"
+  %li.last
+    %a{href: '/emails/box/sent'}
+      %span= "Sent"

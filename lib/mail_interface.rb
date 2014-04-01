@@ -60,7 +60,7 @@ class MailInterface
       email_address: mail.from[0].mailbox << "@" << mail.from[0].host,
       subject:       decode_of_mail( mail ),
       message:       decode_of_mail( mail, "body" ),
-      box_type:      "inner",
+      box_type:      "inbox",
       readed:        false
     }
   end

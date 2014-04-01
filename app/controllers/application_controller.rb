@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def check_authorize
     if !autorized?
-      redirect_to root_url
+      redirect_to root_url, layout: false
       return false
     end
     true

@@ -1,0 +1,7 @@
+.logo Logotype
+%ul.b-navigation
+  %li
+    %a{href: '#'}= @currentUser
+  %li
+    %a{href: '#'}
+      = "Выход"

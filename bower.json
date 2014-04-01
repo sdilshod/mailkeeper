@@ -1,6 +1,16 @@
 {
   "name": "mailkeeper",
   "dependencies": {
-    "normalize-css": "2.1.3"
+    "normalize-css": "2.1.3",
+    "jquery" : "2.0.3",
+    "bootstrap-sass" : "3.0.0",
+    "font-awesome" : "4.0.0",
+    "commonjs" : "git@github.com:rutkovsky/commonjs.git#c41882609c12baa817783095d1681bf34ac7f630",
+    "backbone" : "1.1.0",
+    "underscore" : "1.5.2",
+    "backbone.marionette" : "1.2.2",
+    "underscore.string" : "2.3.3",
+    "jquery.cookie" : "1.4.0",
+    "select2" : "3.4.5"
   }
 }

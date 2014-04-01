@@ -8,7 +8,7 @@ gem 'mysql2'
 gem 'haml'
 gem 'gmail'
 gem "paperclip", "~> 3.0"
-gem 'will_paginate', '~> 3.0'
+gem 'kaminari'
 gem 'ancestry'
 
 gem 'jquery-rails'
@@ -22,6 +22,9 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'compass-rails'
+  gem 'susy'
+  gem 'haml_coffee_assets'
 end
 
 group :production do

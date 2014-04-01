@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Mailkeeper
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tags
+
+  %body
+    %div{:style=>"position:absolute;width:100%;text-align:center;background-color:#CCC;top:150px;"}
+      =flash[:notice]
+    %div{:style => "margin-left:35%;margin-top:22%;width:200px;"}
+      %div
+        = form_for :user do |f|
+          %fieldset
+            %legend Почтовые данный
+            %p
+              =f.label :login, "логин"
+              =f.text_field :login, :style => "width:200px;"
+            %p
+              =f.label :password, "пароль"
+              =f.password_field :password, :style => "width:200px;"
+            %p
+              =check_box_tag :registration, "1", false, :style => "padding-right:0px;margin-right:0px;"
+              =label_tag :registration, "Регистрировать", :style => "margin-left:0px;padding-left:0px;"
+              =submit_tag "Вход"

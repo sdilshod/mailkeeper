@@ -1,0 +1,9 @@
+%a.load-from-server-button{href: '/emails/get_latest'} Загрузить последную
+- if @innerBox
+  %a.delete-mails Удалить все входящих письм
+- else
+  %a.create-mail Новый письмо
+  %a.delete-mails Удалить все отправленных письм
+.email-table
+%a.previous-button <<
+%a.next-button >>

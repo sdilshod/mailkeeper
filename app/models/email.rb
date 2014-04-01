@@ -23,9 +23,11 @@ class Email < ActiveRecord::Base
 
   before_save :fill_up_feilds
 
-  self.per_page = 10
+  scope :ordered, -> { order('date_ desc') }
 
-  def self.get_latest( current_user, box_type="inner" )
+#  self.per_page = 10
+
+  def self.get_latest( current_user, box_type="inbox" )
     last_mail = self.where(:box_type=>box_type).order("date_ desc").first
     d_ = last_mail.blank? ? Date.new(2013,12,1) : last_mail.date_
 

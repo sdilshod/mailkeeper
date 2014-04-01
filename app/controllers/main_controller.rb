@@ -3,13 +3,18 @@
 class MainController < ApplicationController
   before_filter :check_authorize
 
+  PER_PAGE = 10
+
   def index
-    b_type = params[:e_type] || "inner"
-    @emails = current_user.emails.where(:box_type => b_type ).paginate(:page => params[:page]).order('date_ desc')
+    page_number = params[:page] || 1
+    @emails = user_emails(page_number)
+    respond_to do |format|
+      format.json {render :layout => false}
+    end
   end
 
   def new
-  @email = Email.new
+    @email = Email.new
   end
 
   def create
@@ -28,8 +33,13 @@ class MainController < ApplicationController
   end
 
   def get_latest
-    Email.get_latest current_user, params[:e_type]
-    redirect_to :action => 'index'
+    respond_to do |format|
+      format.json do
+        Email.get_latest current_user, params[:box_type]
+        @emails = user_emails( 1 )
+        render template: "main/index", layout: false
+      end
+    end
   end
 
   def show
@@ -57,6 +67,13 @@ class MainController < ApplicationController
     id = params[:id]
     current_user.emails.clear_all_inner(current_user) if id == "all"
  	  redirect_to :action => 'index'
+  end
+
+  private
+
+  def user_emails( page_number )
+    current_user.emails.page(page_number).per(PER_PAGE).
+                        where(box_type: params[:box_type]).order('date_ desc')
   end
 
 end
