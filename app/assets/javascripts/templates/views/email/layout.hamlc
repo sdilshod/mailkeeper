@@ -1,9 +1,9 @@
-%a.load-from-server-button{href: '/emails/get_latest'} Загрузить последную
+%a.load-from-server-button{href: '/emails/get_latest'} Load laster
 - if @innerBox
-  %a.delete-mails Удалить все входящих письм
+  %a.delete-mails Empty inner box
 - else
-  %a.create-mail Новый письмо
-  %a.delete-mails Удалить все отправленных письм
+  %a.create-mail{href: '/emails/new'} New letter
+  %a.delete-mails Empty sent box
 .email-table
 %a.previous-button <<
 %a.next-button >>

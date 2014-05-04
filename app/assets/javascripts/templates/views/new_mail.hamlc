@@ -1,0 +1,12 @@
+%form
+  %input{type: 'submit', value: 'Send letter'}
+  .l-mail-header
+    %p
+      %input.email-address{type: 'text', placeholder: 'Whome'}
+    %p
+      %input.subject{type: 'text', placeholder: 'Subject'}
+  .l-mail-body
+    .message
+      %textarea.message{rows: '4', cols: '50', placeholder: 'Message'}
+    %p
+      %input.file-field{type: 'file', multiple: 'multiple'}

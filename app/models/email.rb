@@ -25,7 +25,6 @@ class Email < ActiveRecord::Base
 
   scope :ordered, -> { order('date_ desc') }
 
-#  self.per_page = 10
 
   def self.get_latest( current_user, box_type="inbox" )
     last_mail = self.where(:box_type=>box_type).order("date_ desc").first
@@ -67,20 +66,21 @@ class Email < ActiveRecord::Base
 
   def send_mail( addr, pw )
     all_is_OK=true
+    self.save
     Email.transaction do
       gmail = Gmail.connect addr, pw
       unless gmail.logged_in?
       	all_is_OK=false
         raise ActiveRecord::Rollback
       end
-      e_a=self.email_address
-      e_m=self.message
+      e_a = self.email_address
+      e_m = self.message
       e_sub = self.subject
       att = self.email_attachments[0].attached_file.path
       g_m = gmail.compose do
         to e_a
         subject e_sub
-          body e_m
+        body e_m
         unless att.blank?
           add_file att
         end

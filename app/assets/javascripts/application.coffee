@@ -2,6 +2,10 @@
 #= require_tree ./modules
 #= require_tree ./templates
 
+$.fn.serializeJSON = require "jquery/serialize_json"
+#$.fn.form_errors = require "jquery/form_errors"
+
+
 $(document).on 'click', 'a[href]:not([data-bypass])', (e) ->
   # Get the absolute anchor href.
   href =

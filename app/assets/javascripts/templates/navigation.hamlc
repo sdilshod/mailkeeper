@@ -4,4 +4,4 @@
     %a{href: '#'}= @currentUser
   %li
     %a{href: '#'}
-      = "Выход"
+      = "Sign out"
