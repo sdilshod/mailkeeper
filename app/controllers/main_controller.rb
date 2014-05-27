@@ -18,17 +18,16 @@ class MainController < ApplicationController
   end
 
   def create
-    @email = Email.new params[:email]
-    @email.user_id=current_user.id
-    @email.email_attachments.build params[:email_attachments]
-    if @email.save
-      unless @email.send_mail current_user.login, current_user.password
-        flash[:error]="Не удалось отправить почту"
+    respond_to do |format|
+      format.json do
+        @email = Email.new params[:email]
+        @email.user = current_user
+        @email.email_attachments.build params[:email_attachments]
+        unless @email.send_mail current_user.login, current_user.password
+          @error_text = "Email not sent"
+        end
+        render :layout => false
       end
-      redirect_to :action => 'index'
-    else
-      flash[:error]="Ошибка в сохранение почты"
-      render :action => 'new'
     end
   end
 

@@ -5,7 +5,6 @@ require.define "emails" : (exports, require, module) ->
   class Emails.Model extends Backbone.Model
     urlRoot: "/emails"
 
-
   class Emails.Collection extends Backbone.Collection
     model: Emails.Model
 
@@ -15,6 +14,5 @@ require.define "emails" : (exports, require, module) ->
       @previousPage = response.previous_page
       @nextPage = response.next_page
       response.emails
-
 
    module.exports = Emails

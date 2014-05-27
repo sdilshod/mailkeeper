@@ -3,6 +3,7 @@ require.define "router" : (exports, require, module) ->
 #----------------------- views --------------------------
   Layout = require "layout"
   EmailView = require "views/email"
+  NewMailView = require "views/new_mail"
 
   #------------------models---------------
   Emails = require "emails"
@@ -22,9 +23,10 @@ require.define "router" : (exports, require, module) ->
       ""                        :  "mainPage"
       "emails/box/:box_type"    :  "emails"
       "emails/get_latest"       :  "getEmailsFromServer"
+      "emails/new"              :  "newMail"
 
     mainPage: ->
-      alert "Wellcome to my mail keeper app !!"
+      @emails(@defaultMailBox)
 
     emails: (boxType) ->
       collection = new Emails.Collection
@@ -39,3 +41,7 @@ require.define "router" : (exports, require, module) ->
         data:
           box_type: @defaultMailBox
         success: => @emails(@defaultMailBox)
+
+    newMail: ->
+      view = new NewMailView model: new Emails.Model
+      @layout.show view

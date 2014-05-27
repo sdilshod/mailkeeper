@@ -1,5 +1,5 @@
 %thead
-  %th{:style => "width: 130px;"} От кого
-  %th{:style => "width: 350px;"} Тема
-  %th{:style => "width: 135px;", :colspan=>2} Дата
+  %th{:style => "width: 130px;"} From
+  %th{:style => "width: 350px;"} Subject
+  %th{:style => "width: 135px;", :colspan=>2} Date
 %tbody.l-emails-list
