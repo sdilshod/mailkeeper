@@ -26,7 +26,7 @@ require.define "router" : (exports, require, module) ->
       "emails/new"              :  "newMail"
 
     mainPage: ->
-      alert "Wellcome to my mail keeper app !!"
+      @emails(@defaultMailBox)
 
     emails: (boxType) ->
       collection = new Emails.Collection

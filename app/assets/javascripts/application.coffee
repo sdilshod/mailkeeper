@@ -1,10 +1,13 @@
 #= require vendor
-#= require_tree ./modules
 #= require_tree ./templates
+#= require_tree ./modules
 
 $.fn.serializeJSON = require "jquery/serialize_json"
-#$.fn.form_errors = require "jquery/form_errors"
 
+helpers = require "helpers/paths"
+
+# global context function that gets merged into the local template context for each template.
+HAML.globals = -> _.extend({}, helpers)
 
 $(document).on 'click', 'a[href]:not([data-bypass])', (e) ->
   # Get the absolute anchor href.

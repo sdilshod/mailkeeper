@@ -1,4 +1,5 @@
 require.define "views/new_mail" : (exports, require, module) ->
+  {rootPath} = require "helpers/paths"
 
   module.exports = class NewMailView extends Backbone.View
     template: JST['views/new_mail']
@@ -9,7 +10,6 @@ require.define "views/new_mail" : (exports, require, module) ->
 
     events:
       "click input[type=submit]" : "_save"
-      "click input[name=subject]": "showValue"
 
     ui:
       emailAddress: ->
@@ -25,12 +25,13 @@ require.define "views/new_mail" : (exports, require, module) ->
       @$el.html @template @model.toJSON()
       this
 
+    #TODO refactor building form data
     buildFormData: ->
       formData = new FormData
       formData.append "email[email_address]", @ui.emailAddress()
       formData.append "email[subject]", @ui.subject()
       formData.append "email[message]", @ui.message()
-      formData.append "email_attachments[attached_file]", @ui.fileField()[0].files[0]
+      formData.append("email_attachments[attached_file]", @ui.fileField()[0].files[0]) if @ui.fileField()[0].files[0]
       formData.append $('meta[name=csrf-param]').attr('content'), $('meta[name=csrf-token]').attr('content')
       formData.append "email[box_type]", "sent"
       formData
@@ -44,10 +45,11 @@ require.define "views/new_mail" : (exports, require, module) ->
         processData: false,
         contentType: false,
         success: =>
-          Backbone.history.navigate "", true
+          alert "email sent"
+          Backbone.history.navigate rootPath(), true
         error: (model, response) =>
-          alert response.responseText
-          #@$('form').form_errors(JSON.parse(response.responseText).errors)
+          alert response.responseText.errors
 
+    # TODO Need to use in future
     _showSpinner: ->
       @$el.text "Loading..."
